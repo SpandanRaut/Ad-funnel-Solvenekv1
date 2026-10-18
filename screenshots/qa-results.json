@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-12T15:37:59.107Z",
+  "engine": "Chrome CDP, offline Vue/Vite preview (not Nuxt)",
+  "viewports": [
+    1440,
+    375
+  ],
+  "runtimeErrors": [],
+  "result": "passed"
+}

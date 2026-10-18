@@ -1,0 +1,7 @@
+{
+  "source": "design/1-landing.png.jpg",
+  "method": "System.Drawing.Bitmap.GetPixel; sampled away from text",
+  "navy": { "coordinate": [200, 55], "rgb": [9, 18, 27] },
+  "brand": { "coordinate": [65, 620], "rgb": [5, 83, 253] },
+  "paper": { "coordinate": [25, 800], "rgb": [252, 252, 250] }
+}

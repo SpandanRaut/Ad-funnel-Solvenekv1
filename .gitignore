@@ -1,0 +1,37 @@
+node_modules
+.nuxt
+.output
+test-results
+playwright-report
+.env
+.qa
+.npm-logs
+.env.*
+!.env.example
+# Raw source recording (>100 MB); the site uses public/videos/founder-intro.mp4
+loom video.mp4
+
+# Build artifacts / caches
+dist
+.cache
+.nitro
+.data
+.vercel
+.netlify
+coverage
+
+# Logs
+*.log
+npm-debug.log*
+
+# Credentials
+*.pem
+*.key
+credentials*.json
+service-account*.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea
+.vscode

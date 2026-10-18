@@ -1,0 +1,53 @@
+.guarantee-strip { position: relative; isolation: isolate; border-color: #648cc060; background: linear-gradient(110deg,#17314c66,#12233744); color: #e0e9f5; }
+.guarantee-strip::before { content: ''; position: absolute; inset: -1px; border-radius: inherit; border: 1px solid #83b5ff; opacity: 0; pointer-events: none; }
+.guarantee-strip.attention-on { box-shadow: 0 0 0 1px #6a9eff12, 0 0 28px #0553fd12; }
+.guarantee-strip.attention-on::before { animation: guarantee-ignite 1.1s var(--ease) both; }
+.guarantee-strip > svg { animation: shield-breathe 7s ease-in-out 3s infinite; }
+.guarantee-strip.attention-on > svg :deep(path:last-child) { stroke-dasharray: 30; animation: shield-draw .65s var(--ease) both; }
+.shield-ripple { position: absolute; width: 25px; height: 25px; left: 14px; top: 15px; border: 1px solid #8ab6ff88; border-radius: 50%; opacity: 0; pointer-events: none; }
+.attention-on .shield-ripple { animation: shield-ripple 1s var(--ease) .2s both; }
+.attention-on .shield-ripple + .shield-ripple { animation-delay: .52s; }
+.guarantee-copy { text-wrap: pretty; }
+.guarantee-marker { color: #f3f7ff; }
+.marker-word { position: relative; display: inline-block; isolation: isolate; }
+.marker-word::before, .marker-word::after { content: ''; position: absolute; inset: 2px -2px; z-index: -1; pointer-events: none; border-radius: 2px; }
+.marker-word::before { background: #2569e73b; clip-path: inset(0 100% 0 0); }
+.attention-on .marker-word::before { animation: guarantee-marker .35s var(--ease) calc(.28s + var(--word) * 30ms) both; }
+.marker-word::after { background: linear-gradient(110deg,transparent 25%,#9cc5ff29 50%,transparent 75%); opacity: 0; }
+.attention-on .marker-word::after { animation: guarantee-gleam 9s var(--ease) calc(3s + var(--word) * 30ms) infinite; }
+.guarantee-strip a.conditions { white-space: nowrap; }
+.proof-line { position: relative; }
+.proof-line.hero-enter { animation: none; }
+.proof-line:focus-visible { outline: 2px solid #9ec5ff; outline-offset: 6px; border-radius: 2px; }
+.proof-figure { position: relative; color: #78a6ff; }
+.proof-number { display: inline-block; position: relative; font-variant-numeric: tabular-nums; }
+.proof-number::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: #78a6ff; transform: scaleX(0); transform-origin: left; }
+.proof-complete .proof-number::after { animation: proof-underline .55s var(--ease) both; }
+.proof-complete:hover .proof-number::after, .proof-complete:focus-visible .proof-number::after { animation: proof-replay .55s var(--ease) both; }
+.proof-counter { display: none; position: absolute; inset: 0 auto auto 0; white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 700; }
+.proof-counter::before { content: attr(data-value); }
+.proof-counting .proof-value { opacity: 0; }
+.proof-counting .proof-counter { display: inline; }
+.attention-on .avatar-stack span { animation: avatar-pop .45s var(--ease) both; }
+.attention-on .avatar-stack span:nth-child(2) { animation-delay: 60ms; }
+.attention-on .avatar-stack span:nth-child(3) { animation: avatar-pop .45s var(--ease) 120ms both, avatar-ring .8s var(--ease) .4s both; }
+@media (prefers-reduced-motion: no-preference) { .proof-line:not(.attention-on) .avatar-stack span { opacity: 0; } }
+.calendar-stage.attention-on .calendar-glow { animation: calendar-attention 1.2s var(--ease) both; }
+.attention-paused, .attention-paused::before, .attention-paused::after, .attention-paused :deep(*), .attention-paused :deep(*)::before, .attention-paused :deep(*)::after { animation-play-state: paused !important; }
+@keyframes guarantee-ignite { 0% { opacity: 1; clip-path: polygon(0 0,0 0,0 0,0 0); } 25% { clip-path: polygon(0 0,100% 0,100% 0,0 0); } 50% { clip-path: polygon(0 0,100% 0,100% 100%,100% 100%,100% 0,0 0); } 75% { clip-path: polygon(0 0,100% 0,100% 100%,0 100%,0 100%,100% 100%,100% 0,0 0); } 100% { opacity: .3; clip-path: inset(0); } }
+@keyframes shield-draw { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
+@keyframes shield-ripple { from { opacity: .6; transform: scale(.65); } to { opacity: 0; transform: scale(2.15); } }
+@keyframes shield-breathe { 0%,100% { opacity: .8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
+@keyframes guarantee-marker { to { clip-path: inset(0); } }
+@keyframes guarantee-gleam { 0%,84%,100% { opacity: 0; transform: translateX(-80%); } 88% { opacity: .6; } 96% { opacity: 0; transform: translateX(85%); } }
+@keyframes avatar-pop { from { opacity: 0; transform: translateY(5px) scale(.7); } to { opacity: 1; transform: none; } }
+@keyframes avatar-ring { 25% { box-shadow: 0 0 0 4px #79aaff55; } 100% { box-shadow: 0 0 0 9px #79aaff00; } }
+@keyframes proof-underline { to { transform: scaleX(1); } }
+@keyframes proof-replay { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes calendar-attention { 0%,100% { opacity: 1; transform: scale(1); } 45% { opacity: 1; transform: scale(1.07); box-shadow: 0 0 45px #0553fd14; } }
+@media (prefers-reduced-motion: reduce) {
+ .marker-word::before { clip-path: inset(0); }
+ .marker-word::after, .shield-ripple, .guarantee-strip::before, .proof-counter { display: none; }
+ .proof-counting .proof-value { opacity: 1; }
+ .proof-number::after { transform: scaleX(1); }
+}
