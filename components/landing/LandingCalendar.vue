@@ -97,6 +97,14 @@ async function onMessage(message: MessageEvent) {
   scheduled = true;
   store.setBooking({ eventUri, inviteeUri });
   await bookingGate.complete(message.data);
+  // A booked strategy call is the lead: fire Meta's Lead event with a stable
+  // id (invitee uuid) so pixel and webhook data can deduplicate against it.
+  trackOnce(
+    `lead:${inviteeUri}`,
+    "Lead",
+    `lead-${inviteeUri.split("/").pop()}`,
+    { content_name: "strategy_call_booked" },
+  );
   analytics.track("booking_complete");
   trackOnce(
     `schedule:${inviteeUri}`,
