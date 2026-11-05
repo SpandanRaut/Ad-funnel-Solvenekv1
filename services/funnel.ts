@@ -1,6 +1,6 @@
 import type { Application } from "~/stores/funnel";
 
-const LEAD_ENDPOINT = "/.netlify/functions/lead";
+const LEAD_ENDPOINT = "/api/lead";
 
 /** Sends the application to the lead function; throws unless it was accepted. */
 export async function submitApplication(

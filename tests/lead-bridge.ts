@@ -25,7 +25,7 @@ export async function startWebhook() {
 
 export async function bridgeLeadFunction(page: Page) {
   const requests: Record<string, unknown>[] = [];
-  await page.route("**/.netlify/functions/lead", async (route) => {
+  await page.route("**/api/lead", async (route) => {
     const request = route.request();
     requests.push(request.postDataJSON());
     const response = await handler(

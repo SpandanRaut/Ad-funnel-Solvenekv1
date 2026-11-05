@@ -45,7 +45,7 @@ const text = (value: unknown, max: number) =>
 const asSheetText = (value: string) =>
   /^[=+\-@\t\r]/.test(value) ? `'${value}` : value;
 
-export default async (request: Request) => {
+export default async (request: Request, webhookUrl: string | undefined = process.env.LEAD_WEBHOOK_URL) => {
   if (request.method !== "POST") return json(405, { error: "Method not allowed" });
   const raw = await request.text();
   if (raw.length > MAX_BODY) return json(413, { error: "Payload too large" });
@@ -84,7 +84,7 @@ export default async (request: Request) => {
     // Missing or malformed: send without it.
   }
 
-  const webhook = process.env.LEAD_WEBHOOK_URL;
+  const webhook = webhookUrl;
   if (!webhook) {
     console.error("LEAD_WEBHOOK_URL is not set");
     return json(500, { error: "Lead capture is not configured" });

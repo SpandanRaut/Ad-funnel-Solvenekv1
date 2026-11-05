@@ -18,6 +18,8 @@ export default defineNuxtConfig({
   modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
   css: ["~/assets/css/main.css"],
   runtimeConfig: {
+    // Server-only. Set NUXT_LEAD_WEBHOOK_URL in the host's environment variables.
+    leadWebhookUrl: "",
     public: {
       siteUrl,
       contactEmail: process.env.NUXT_PUBLIC_CONTACT_EMAIL || "support@solvenek.com",
